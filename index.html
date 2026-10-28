@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Breaking Bad</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#EADBB8; --surface:#F6EBCF; --ink:#2B1E12; --muted:#6B5A44;
+  --yellow:#F2C811; --green:#1F6B3A; --blue:#2F8CB0; --line:#C9B58A;
+  --tile-ink:#fff;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#1B1610; --surface:#26200F; --ink:#F1E6CC; --muted:#B5A584; --line:#4A3F27;
+    --yellow:#F2C811; --green:#3E9A5E; --blue:#5BB8D6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#1B1610; --surface:#26200F; --ink:#F1E6CC; --muted:#B5A584; --line:#4A3F27;
+  --green:#3E9A5E; --blue:#5BB8D6;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Work Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;line-height:1.1;margin:0}
+main{max-width:920px;margin:0 auto;padding:0 20px 64px}
+section{margin-top:64px}
+h2{font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:20px}
+p{max-width:64ch;margin:0 0 14px}
+
+.hero{padding:56px 0 8px}
+.tiles{display:flex;gap:10px;flex-wrap:wrap}
+.tile{width:clamp(96px,22vw,150px);aspect-ratio:1;background:var(--green);color:var(--tile-ink);border:3px solid var(--ink);border-radius:6px;padding:8px 10px;position:relative;display:flex;align-items:center;justify-content:center;font-family:"Alfa Slab One",Georgia,serif}
+.tile small{position:absolute;top:6px;left:9px;font:600 .8rem "Work Sans",sans-serif}
+.tile b{font-weight:400;font-size:clamp(2.6rem,9vw,4.6rem)}
+.tile em{position:absolute;bottom:6px;left:0;right:0;text-align:center;font:600 .72rem "Work Sans",sans-serif;font-style:normal}
+.hero h1{font-size:clamp(2.4rem,9vw,5rem);margin-top:22px}
+.hero p{font-size:1.15rem;color:var(--muted);margin-top:14px}
+
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--surface);border:2px solid var(--line);border-left:8px solid var(--yellow);padding:14px 16px}
+.card:nth-child(3n+2){border-left-color:var(--green)}
+.card:nth-child(3n){border-left-color:var(--blue)}
+.card h3{font-size:1.25rem}
+.card .who{color:var(--muted);font-size:.9rem;margin:2px 0 8px}
+.card p{margin:0;font-size:.97rem}
+
+.seasons{list-style:none;margin:0;padding:0;border-left:4px solid var(--ink)}
+.seasons li{position:relative;padding:0 0 26px 24px}
+.seasons li::before{content:"";position:absolute;left:-12px;top:6px;width:20px;height:20px;background:var(--yellow);border:3px solid var(--ink);border-radius:50%}
+.seasons h3{font-size:1.3rem}
+.seasons .meta{color:var(--muted);font-size:.9rem;margin:2px 0 6px}
+.seasons p{margin:0}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.fact{background:var(--yellow);color:#2B1E12;padding:16px;border:3px solid #2B1E12}
+.fact strong{display:block;font:400 2.1rem/1 "Alfa Slab One",Georgia,serif}
+.fact span{font-size:.95rem}
+
+.lab{background:var(--surface);border:3px solid var(--ink);padding:22px}
+.lab label{display:block;font-weight:600;margin-bottom:8px}
+.lab input{width:100%;max-width:360px;font:inherit;padding:10px 12px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:4px}
+.lab input:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+#out{margin-top:18px}
+#out .tiles{gap:8px}
+#out .tile{width:84px}
+#out .tile b{font-size:2.3rem}
+#out .tile em{font-size:.62rem}
+#msg{color:var(--muted);margin-top:10px;font-size:.95rem}
+
+footer{margin-top:64px;border-top:2px solid var(--line);padding-top:16px;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){
+  .hero .tile{animation:drop .5s ease-out both}
+  .hero .tile+.tile{animation-delay:.12s}
+}
+@keyframes drop{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="tiles" aria-hidden="true">
+      <div class="tile"><small>35</small><b>Br</b><em>Bromo</em></div>
+      <div class="tile" style="background:var(--yellow);color:#2B1E12"><small>56</small><b>Ba</b><em>Bario</em></div>
+    </div>
+    <h1>Breaking Bad</h1>
+    <p>Un profesor de química con cáncer terminal se mete a fabricar metanfetamina para dejarle plata a su familia. Cinco temporadas, una de las mejores series que se hayan hecho.</p>
+  </header>
+
+  <section>
+    <h2>De qué va</h2>
+    <p>Walter White es un profesor de secundaria de Albuquerque, Nuevo México, que apenas llega a fin de mes. Cuando le diagnostican cáncer de pulmón, decide usar lo que sabe de química para cocinar metanfetamina junto a Jesse Pinkman, un ex alumno suyo.</p>
+    <p>Lo que arranca como un plan desesperado se convierte en la historia de cómo una persona cambia, decisión tras decisión. Ojo: más abajo hay un resumen por temporada, sin spoilers fuertes.</p>
+  </section>
+
+  <section>
+    <h2>Los personajes</h2>
+    <div class="cast">
+      <article class="card"><h3>Walter White</h3><div class="who">Bryan Cranston</div><p>El profe de química que se convierte en Heisenberg.</p></article>
+      <article class="card"><h3>Jesse Pinkman</h3><div class="who">Aaron Paul</div><p>Su ex alumno y socio. Impulsivo, pero con más corazón de lo que aparenta.</p></article>
+      <article class="card"><h3>Skyler White</h3><div class="who">Anna Gunn</div><p>La esposa de Walter, que va descubriendo que algo no cierra.</p></article>
+      <article class="card"><h3>Hank Schrader</h3><div class="who">Dean Norris</div><p>Cuñado de Walter y agente de la DEA.</p></article>
+      <article class="card"><h3>Saul Goodman</h3><div class="who">Bob Odenkirk</div><p>El abogado de los chanchullos. Tuvo su propia serie.</p></article>
+      <article class="card"><h3>Gus Fring</h3><div class="who">Giancarlo Esposito</div><p>Dueño de una cadena de pollos fritos y de un imperio mucho más grande.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Temporada por temporada</h2>
+    <ol class="seasons">
+      <li><h3>Temporada 1</h3><div class="meta">2008 · 7 episodios</div><p>Walter recibe el diagnóstico y da sus primeros pasos en el negocio con Jesse.</p></li>
+      <li><h3>Temporada 2</h3><div class="meta">2009 · 13 episodios</div><p>El negocio crece, y también los problemas con la familia y con la ley.</p></li>
+      <li><h3>Temporada 3</h3><div class="meta">2010 · 13 episodios</div><p>Hank se acerca a la verdad y aparecen nuevas amenazas.</p></li>
+      <li><h3>Temporada 4</h3><div class="meta">2011 · 13 episodios</div><p>Un duelo de ingenio y poder entre Walter y Gus.</p></li>
+      <li><h3>Temporada 5</h3><div class="meta">2012 y 2013 · 16 episodios</div><p>El desenlace. Se emitió dividida en dos tandas de ocho capítulos.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Datos rápidos</h2>
+    <div class="facts">
+      <div class="fact"><strong>62</strong><span>episodios en total</span></div>
+      <div class="fact"><strong>2008</strong><span>año del estreno en AMC</span></div>
+      <div class="fact"><strong>Vince Gilligan</strong><span>creador de la serie</span></div>
+      <div class="fact"><strong>2</strong><span>derivados: Better Call Saul y El Camino</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tu nombre en la tabla periódica</h2>
+    <div class="lab">
+      <label for="name">Escribí tu nombre</label>
+      <input id="name" type="text" value="Joel" autocomplete="off" maxlength="24">
+      <div id="out" aria-live="polite"></div>
+      <div id="msg"></div>
+    </div>
+  </section>
+
+  <footer>Página de fans, hecha con HTML y CSS. No tiene relación oficial con la serie.</footer>
+</main>
+
+<script>
+(function(){
+  var EL={H:"Hidrógeno",He:"Helio",Li:"Litio",Be:"Berilio",B:"Boro",C:"Carbono",N:"Nitrógeno",O:"Oxígeno",F:"Flúor",Ne:"Neón",Na:"Sodio",Mg:"Magnesio",Al:"Aluminio",Si:"Silicio",P:"Fósforo",S:"Azufre",Cl:"Cloro",Ar:"Argón",K:"Potasio",Ca:"Calcio",Sc:"Escandio",Ti:"Titanio",V:"Vanadio",Cr:"Cromo",Mn:"Manganeso",Fe:"Hierro",Co:"Cobalto",Ni:"Níquel",Cu:"Cobre",Zn:"Zinc",Ga:"Galio",Ge:"Germanio",As:"Arsénico",Se:"Selenio",Br:"Bromo",Kr:"Kriptón",Rb:"Rubidio",Sr:"Estroncio",Y:"Itrio",Zr:"Circonio",Nb:"Niobio",Mo:"Molibdeno",Tc:"Tecnecio",Ru:"Rutenio",Rh:"Rodio",Pd:"Paladio",Ag:"Plata",Cd:"Cadmio",In:"Indio",Sn:"Estaño",Sb:"Antimonio",Te:"Telurio",I:"Yodo",Xe:"Xenón",Cs:"Cesio",Ba:"Bario",La:"Lantano",Ce:"Cerio",Pr:"Praseodimio",Nd:"Neodimio",Pm:"Prometio",Sm:"Samario",Eu:"Europio",Gd:"Gadolinio",Tb:"Terbio",Dy:"Disprosio",Ho:"Holmio",Er:"Erbio",Tm:"Tulio",Yb:"Iterbio",Lu:"Lutecio",Hf:"Hafnio",Ta:"Tántalo",W:"Wolframio",Re:"Renio",Os:"Osmio",Ir:"Iridio",Pt:"Platino",Au:"Oro",Hg:"Mercurio",Tl:"Talio",Pb:"Plomo",Bi:"Bismuto",Po:"Polonio",At:"Astato",Rn:"Radón",Fr:"Francio",Ra:"Radio",Ac:"Actinio",Th:"Torio",Pa:"Protactinio",U:"Uranio",Np:"Neptunio",Pu:"Plutonio",Am:"Americio",Cm:"Curio",Bk:"Berkelio",Cf:"Californio",Es:"Einstenio",Fm:"Fermio",Md:"Mendelevio",No:"Nobelio",Lr:"Lawrencio"};
+  var map={};Object.keys(EL).forEach(function(k){map[k.toLowerCase()]=k;});
+  function split(s,i,memo){
+    if(i===s.length)return [];
+    if(memo[i]!==undefined)return memo[i];
+    var r=null,n;
+    for(n=2;n>=1&&!r;n--){
+      var p=s.substr(i,n);
+      if(p.length===n&&map[p]){
+        var rest=split(s,i+n,memo);
+        if(rest)r=[map[p]].concat(rest);
+      }
+    }
+    memo[i]=r;return r;
+  }
+  var input=document.getElementById("name"),out=document.getElementById("out"),msg=document.getElementById("msg");
+  function render(){
+    var raw=input.value.toLowerCase().normalize("NFD").replace(/[^a-z]/g,"");
+    out.textContent="";msg.textContent="";
+    if(!raw)return;
+    var res=split(raw,0,{});
+    if(!res){msg.textContent="Con ese nombre no se puede armar con símbolos de elementos. Probá con otro o con un apodo.";return;}
+    var wrap=document.createElement("div");wrap.className="tiles";
+    res.forEach(function(sym,idx){
+      var t=document.createElement("div");t.className="tile";
+      if(idx%2){t.style.background="var(--yellow)";t.style.color="#2B1E12";}
+      var s=document.createElement("b");s.textContent=sym;
+      var e=document.createElement("em");e.textContent=EL[sym];
+      t.appendChild(s);t.appendChild(e);wrap.appendChild(t);
+    });
+    out.appendChild(wrap);
+  }
+  input.addEventListener("input",render);render();
+})();
+</script>
+</body>
+</html>
